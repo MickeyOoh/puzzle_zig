@@ -1,7 +1,7 @@
 const std = @import("std");
 const print = std.debug.print;
-const nPr = @import("nPr_nCr.zig").nPr;
-const nCr = @import("nPr_nCr.zig").nCr;
+const nPr = @import("mymath.zig").nPr;
+const nCr = @import("mymath.zig").nCr;
 const assert = std.debug.assert;
 
 pub const comments: []const u8 = "ファイルの順番を元どおりに戻したい!";

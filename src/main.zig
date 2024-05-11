@@ -16,8 +16,12 @@ pub fn main() !void {
     // Get and print them!
     //std.debug.print("There are {d} args:\n", .{args.len});
     if (args.len < 2) {
-        print("args.len: {} -> algo_exe funcname arg1 arg2...", .{args.len});
-
+        print("args.len: {} -> algo_exe funcname arg1 arg2...\n", .{args.len});
+        print("functable list\n", .{});
+        for (functb.functable) |funct| {
+            print(" {s} - {s}\n", .{ funct.name, funct.comment });
+        }
+        print("end\n", .{});
         return;
     }
     var found: bool = false;
@@ -26,7 +30,6 @@ pub fn main() !void {
             found = true;
             print("関数実行 - {s}\n", .{funct.comment});
             funct.func();
-            //functest(args);
         }
     }
     if (!found) {
@@ -37,7 +40,3 @@ pub fn main() !void {
         print("end\n", .{});
     }
 }
-
-//fn functest(args: [][]u8) void {
-//    print("{s}\n", .{args[1]});
-//}

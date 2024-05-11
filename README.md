@@ -1,1 +1,5 @@
 # puzzle_zig
+
+zig version - 0.12.0
+
+

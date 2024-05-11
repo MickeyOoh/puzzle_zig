@@ -1,6 +1,8 @@
 const std = @import("std");
 const print = std.debug.print;
 
+pub const comments: []const u8 = "枚数で考えるパスカルの三角形";
+
 const N = 45;
 
 fn count(n: u64) u64 {

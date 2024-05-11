@@ -1,6 +1,7 @@
 const std = @import("std");
 const print = std.debug.print;
 const N = 30;
+pub const comments: []const u8 = "点灯している量で考えるデジタル時計";
 
 const light = [_]u8{ 6, 2, 5, 5, 4, 5, 6, 3, 7, 6 };
 fn check(num: usize) u32 {

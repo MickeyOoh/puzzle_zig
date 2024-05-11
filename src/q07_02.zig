@@ -1,8 +1,9 @@
 const std = @import("std");
 const print = std.debug.print;
-const nPr = @import("nPr_nCr.zig").nPr;
-const nCr = @import("nPr_nCr.zig").nCr;
-const pr = @import("format.zig");
+const mymath = @import("mymath.zig");
+const nPr = mymath.nPr;
+const nCr = mymath.nCr;
+const prn = @import("format.zig");
 
 pub const comments: []const u8 = "ファイルの順番を元どおりに戻したい!";
 const N = 15;
@@ -25,7 +26,7 @@ pub fn redo_order() void {
         total += cnt[i] * i;
     }
     print("answer({}): {}\n", .{ N, total });
-    pr.separate_1000(total);
+    prn.separate_1000(total);
     //const formattedNumber = std.math.formatU64(total, .{ .thousands_separator = ',' });
     //print("answer: {}\n", .{formattedNumber});
 }
