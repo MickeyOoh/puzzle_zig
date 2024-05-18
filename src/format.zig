@@ -1,41 +1,45 @@
 const std = @import("std");
 const print = std.debug.print;
 
-var tmpnum: [10]u64 = undefined;
-var setmem: [10]u64 = undefined;
-pub fn separate_1000(num: u64) void {
-    for (0..10) |i| {
-        tmpnum[i] = 0;
-        setmem[i] = 0;
+fn formatWithCommas(allocator: *std.mem.Allocator, value: i64) ![]u8 {
+    const buffer = std.fmt.allocPrint(allocator.*, "{}", .{value}) catch return error.OutOfMemory;
+    const len = buffer.len;
+    var result = try allocator.alloc(u8, len + len / 3);
+
+    var srcIndex: usize = 0;
+    var dstIndex: usize = 0;
+    var count: usize = len % 3;
+
+    if (count == 0 and len > 0) {
+        count = 3;
     }
-    var tmp: u64 = 0;
-    var n: u64 = num;
-    var i: u64 = 0;
-    while (n > 0) : ({
-        n /= 1000;
-        i += 1;
-    }) {
-        tmpnum[i] = @mod(n, 1000);
-    }
-    var j: u64 = 0;
-    while (i > 0) : ({
-        i -= 1;
-        j += 1;
-    }) {
-        tmp = tmpnum[i - 1];
-        setmem[j] = tmp;
-    }
-    for (setmem, 0..10) |nums, index| {
-        if (index < j - 1) {
-            print("{},", .{nums});
-        } else {
-            print("{}", .{nums});
-            break;
+
+    while (srcIndex < len) {
+        if (count == 0) {
+            result[dstIndex] = ','; // Insert comma
+            dstIndex += 1;
+            count = 3;
         }
+
+        result[dstIndex] = buffer[srcIndex];
+        srcIndex += 1;
+        dstIndex += 1;
+        count -= 1;
     }
-    print("\n", .{});
+
+    return result;
+}
+
+pub fn print_comma(num: i64) !void {
+    var allocator = std.heap.page_allocator;
+
+    const formattedValue = try formatWithCommas(&allocator, num);
+    defer allocator.free(formattedValue);
+
+    print("{s}\n", .{formattedValue});
 }
 
 test "format test" {
-    separate_1000(1234567);
+    //separate_1000(1234567);
+    try print_comma(1234567);
 }

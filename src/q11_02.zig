@@ -1,6 +1,6 @@
 const std = @import("std");
 const print = std.debug.print;
-const pr = @import("format.zig").separate_1000;
+const pr = @import("format.zig").print_comma;
 
 pub const comments: []const u8 = "オリンピックの開催都市投票";
 
@@ -11,7 +11,8 @@ var cnt: u64 = 0;
 pub fn function() void {
     const ans: u64 = vote(N);
     print("{} -> {}\n", .{ N, ans });
-    pr(ans);
+    const ans_cast = @as(i64, @intCast(ans));
+    _ = pr(ans_cast) catch 0;
 }
 
 fn vote(n: u64) u64 {
