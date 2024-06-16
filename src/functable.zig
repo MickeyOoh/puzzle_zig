@@ -1,5 +1,3 @@
-const std = @import("std");
-const print = std.debug.print;
 const q04 = @import("q04.zig");
 const q05 = @import("q05.zig");
 const q06 = @import("q06_02.zig");
@@ -13,6 +11,9 @@ const q14 = @import("q14_01.zig");
 const q15 = @import("q15_01.zig");
 const q16 = @import("q16_01.zig");
 const q17 = @import("q17_01.zig");
+const q18 = @import("q18_02.zig");
+const q19 = @import("q19_02.zig");
+const q20 = @import("q20_02.zig");
 
 const FuncT = struct {
     name: []const u8, // パズル名で指定の引数
@@ -20,8 +21,8 @@ const FuncT = struct {
     comment: []const u8, // 内容
 };
 pub const functable = [_]FuncT{
-    FuncT{ .name = "q04", .func = q04.checksegs, .comment = q04.comments },
-    FuncT{ .name = "q05", .func = q05.pascal_triangle, .comment = q05.comments },
+    FuncT{ .name = "q04", .func = q04.function, .comment = q04.comments },
+    FuncT{ .name = "q05", .func = q05.function, .comment = q05.comments },
     FuncT{ .name = "q06", .func = q06.make_square, .comment = q06.comments },
     FuncT{ .name = "q07", .func = q07.function, .comment = q07.comments },
     FuncT{ .name = "q09", .func = q09.narcissistic_number, .comment = q09.comments },
@@ -33,4 +34,7 @@ pub const functable = [_]FuncT{
     FuncT{ .name = "q15", .func = q15.function, .comment = q15.comments },
     FuncT{ .name = "q16", .func = q16.function, .comment = q16.comments },
     FuncT{ .name = "q17", .func = q17.function, .comment = q17.comments },
+    FuncT{ .name = "q18", .func = q18.function, .comment = q18.comments },
+    FuncT{ .name = "q19", .func = q19.function, .comment = q19.comments },
+    FuncT{ .name = "q20", .func = q20.function, .comment = q20.comments },
 };

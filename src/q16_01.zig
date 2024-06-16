@@ -1,6 +1,6 @@
 const std = @import("std");
 const print = std.debug.print;
-const gcd = @import("mymath.zig").gcd;
+const gcd = std.math.gcd;
 
 pub const comments: []const u8 = "既約分数はいくつある?";
 

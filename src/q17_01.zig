@@ -8,9 +8,9 @@ pub const comments: []const u8 = "グループで乗るリフト";
 //const M = 3; // 3人/リフト
 const N = 32; // 5人
 const M = 6; // 3人/リフト
-var lifts: [N + 1]usize = undefined;
-var mem: [N + 1]usize = undefined;
-fn board(remain: usize, scale: usize) usize {
+var lifts = [_]usize{0} ** (N + 1);
+var mem = [_]i64{0} ** (N + 1);
+fn board(remain: usize, scale: usize) i64 {
     //
     //if (remain < 0) return 0;
     //if (remain == 0) {
@@ -21,7 +21,7 @@ fn board(remain: usize, scale: usize) usize {
     if (mem[remain] > 0) {
         return mem[remain];
     }
-    var cnt: u64 = 0;
+    var cnt: i64 = 0;
     for (1..M + 1) |i| {
         lifts[scale] = i;
         if (remain >= i) {
@@ -34,16 +34,11 @@ fn board(remain: usize, scale: usize) usize {
     return cnt;
 }
 pub fn function() void {
-    for (0..lifts.len) |i| {
-        lifts[i] = 0;
-        mem[i] = 0;
-    }
     mem[0] = 1;
     mem[1] = 1;
-    //print("iifts: {any}\n", .{lifts});
     const cnt = board(N, 0);
     print("result: {}\n", .{cnt});
-    _ = pr(@as(i64, @intCast(cnt))) catch 0;
+    _ = pr(cnt) catch 0;
 }
 
 test "testing" {

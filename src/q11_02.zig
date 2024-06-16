@@ -11,8 +11,7 @@ var cnt: u64 = 0;
 pub fn function() void {
     const ans: u64 = vote(N);
     print("{} -> {}\n", .{ N, ans });
-    const ans_cast = @as(i64, @intCast(ans));
-    _ = pr(ans_cast) catch 0;
+    _ = pr(ans) catch 0;
 }
 
 fn vote(n: u64) u64 {

@@ -1,6 +1,6 @@
 const std = @import("std");
 const print = std.debug.print;
-
+const pr = @import("format.zig").print_comma;
 pub const comments: []const u8 = "枚数で考えるパスカルの三角形";
 
 const N = 45;
@@ -18,18 +18,10 @@ fn count(n: u64) u64 {
     return result;
 }
 
-fn clear_array(array: []u64, len: usize) void {
-    for (0..len) |i| {
-        array[i] = 0;
-    }
-}
+var row = [_]u64{0} ** (N + 2);
 
-var row: [N + 2]u64 = undefined;
-
-//pub fn pascal_triangle(args: u64) void {
 pub fn pascal_triangle() void {
     const args: u64 = N;
-    clear_array(&row, row.len);
 
     row[0] = 1;
     for (1..args + 1) |i| {
@@ -48,8 +40,12 @@ pub fn pascal_triangle() void {
         total += count(row[i]);
     }
     print("n: {}-coins:{}\n", .{ args, total });
+    _ = pr(total) catch 0;
 }
 
+pub fn function() void {
+    pascal_triangle();
+}
 test "testing" {
     print("\n", .{});
     pascal_triangle();

@@ -3,7 +3,7 @@ const print = std.debug.print;
 const mymath = @import("mymath.zig");
 const nPr = mymath.nPr;
 const nCr = mymath.nCr;
-const prn = @import("format.zig").print_comma;
+const pr = @import("format.zig").print_comma;
 
 pub const comments: []const u8 = "ファイルの順番を元どおりに戻したい!";
 const N = 15;
@@ -27,7 +27,7 @@ pub fn redo_order() void {
     }
     print("answer({}): {}\n", .{ N, total });
 
-    _ = prn(@as(i64, @intCast(total))) catch 0;
+    _ = pr(total) catch 0;
     //const formattedNumber = std.math.formatU64(total, .{ .thousands_separator = ',' });
     //print("answer: {}\n", .{formattedNumber});
 }
