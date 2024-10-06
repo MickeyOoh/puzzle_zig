@@ -10,7 +10,7 @@ const N = 8; // 8 進数
 // 最大でn x 9のn乗となる。n x pow(9, n) < pow(10, n - 1)
 // N進数の場合 n x pow(N - 1, n) < pow(N, n - 1)の条件になる
 // 桁数n(keta)を求める
-pub fn narcissistic_number() void {
+pub fn function() void {
     // ketaが44になるので、128でもオーバーフローで計算できない
     //var keta: u128 = 1;
     //while (true) : (keta += 1) {
@@ -64,5 +64,6 @@ fn conv_number(num: u64, base: u64) u64 {
 }
 
 test "narcissistic number" {
-    narcissistic_number();
+    print("\nテスト:{s}\n", .{comments});
+    function();
 }

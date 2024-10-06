@@ -28,7 +28,7 @@ fn cut(w: i32, h: i32, n: i32) bool {
     }
 }
 
-pub fn make_square() void {
+pub fn function() void {
     var cnt: i32 = 0;
     for (1..W + 1) |i| {
         for (i..W + 1) |j| {
@@ -41,5 +41,5 @@ pub fn make_square() void {
 }
 
 test "make square from rectangle" {
-    make_square();
+    function();
 }

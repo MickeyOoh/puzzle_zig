@@ -9,16 +9,16 @@ pub const description =
     \\ 全部で何通りあるかを求めて下さい 
 ;
 
-//const N = 5; // 全部の駅数
-//const START = 2; // 乗車駅
-//const GOAL = 3; //  降車駅
-const N = 15; // 全部の駅数
-const START = 3; // 乗車駅
-const GOAL = 10; //  降車駅
+//const PAGES = 180; // ページ数
+//const DAYS = 14; // 何日以内に読み終える
+const PAGES = 100; // ページ数
+const DAYS = 3; // 何日以内に読み終える
 pub fn function() void {
     print("内容:\n{s}\n", .{description});
+    var count: u64 = 0;
 }
-
+var eachpage = [D]u8{0} ** D;
+fn count(page: u32, prev: u32, days: u32) u64 {}
 test "testing" {
     print("\nテスト:{s}\n", .{comments});
     function();

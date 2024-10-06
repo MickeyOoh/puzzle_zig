@@ -14,7 +14,6 @@ const RUNNER = 50; // num of Runner
 const HOOK = 35; // num of Hook
 
 const Keys = struct { nn: u32, rr: u32 };
-
 pub fn function() void {
     print("内容:\n{s}\n", .{description});
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};

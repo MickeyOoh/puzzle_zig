@@ -15,14 +15,10 @@ fn set_digs() void {
     }
 }
 
-//var segnums: [44]u32 = undefined;
 var segnums = [_]u32{0} ** 44;
 
 pub fn checksegs() void {
     set_digs();
-    //    for (0..44) |i| {
-    //        segnums[i] = 0;
-    //    }
 
     for (0..23 + 1) |hour| {
         for (0..59 + 1) |min| {

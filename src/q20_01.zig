@@ -25,11 +25,13 @@ pub fn function() void {
     var used = [_]bool{false} ** N;
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
+    print("allocator: {}\n", .{@TypeOf(allocator)});
     defer {
         const deinit_status = gpa.deinit();
         if (deinit_status == .leak) expect(false) catch @panic("Memory leak");
     }
     var map = std.AutoHashMap(Keys, u64).init(allocator);
+    print("map: {}\n", .{@TypeOf(map)});
     defer map.deinit();
 
     result = search(&map, &used, START);

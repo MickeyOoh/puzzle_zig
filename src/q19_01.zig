@@ -21,6 +21,8 @@ const Keys = struct {
 const key1 = Keys{ .runner = 2, .hook = 2 };
 const key2 = Keys{ .runner = 3, .hook = 2 };
 
+var map: std.AutoHashMap(Keys, u64) = undefined;
+
 pub fn function() void {
     print("内容:\n{s}\n", .{description});
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
@@ -30,20 +32,23 @@ pub fn function() void {
         //fail test; can't try in defer as defer is executed after we return
         if (deinit_status == .leak) expect(false) catch @panic("TEST FAIL");
     }
-    var map = std.AutoHashMap(Keys, u64).init(allocator);
+    map = std.AutoHashMap(Keys, u64).init(allocator);
     defer map.deinit();
 
+    print("map:{any}\n", .{map});
     _ = map.put(key1, 1) catch 0;
     putcnt += 1;
     _ = map.put(key2, 1) catch 0;
     putcnt += 1;
     print("map.capacity() -> {}\n", .{map.capacity()});
-    const result = search(&map, RUNNER, HOOK);
+    //const result = search(&map, RUNNER, HOOK);
+    const result = search(RUNNER, HOOK);
     print("result: {} ->", .{result});
     _ = pr(result) catch 0;
 }
 var putcnt: u64 = 0;
-fn search(map: anytype, runner: u8, hook: u8) u64 {
+//fn search(map: anytype, runner: u8, hook: u8) u64 {
+fn search(runner: u8, hook: u8) u64 {
     const key = Keys{ .runner = runner, .hook = hook };
     var dt = map.get(key);
     if (dt) |d| {
@@ -59,9 +64,11 @@ fn search(map: anytype, runner: u8, hook: u8) u64 {
         return 0;
     }
     var cnt: u64 = 0;
-    cnt += search(map, runner - 1, hook - 1);
+    //cnt += search(map, runner - 1, hook - 1);
+    cnt += search(runner - 1, hook - 1);
     // 一つ飛ばしてフックをセット
-    cnt += search(map, runner - 2, hook - 1);
+    //cnt += search(map, runner - 2, hook - 1);
+    cnt += search(runner - 2, hook - 1);
 
     _ = map.put(key, cnt) catch |err| {
         print("map.put error:{?}\n", .{err});

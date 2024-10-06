@@ -23,9 +23,9 @@ const FuncT = struct {
 pub const functable = [_]FuncT{
     FuncT{ .name = "q04", .func = q04.function, .comment = q04.comments },
     FuncT{ .name = "q05", .func = q05.function, .comment = q05.comments },
-    FuncT{ .name = "q06", .func = q06.make_square, .comment = q06.comments },
+    FuncT{ .name = "q06", .func = q06.function, .comment = q06.comments },
     FuncT{ .name = "q07", .func = q07.function, .comment = q07.comments },
-    FuncT{ .name = "q09", .func = q09.narcissistic_number, .comment = q09.comments },
+    FuncT{ .name = "q09", .func = q09.function, .comment = q09.comments },
     FuncT{ .name = "q10", .func = q10.function, .comment = q10.comments },
     FuncT{ .name = "q11", .func = q11.function, .comment = q11.comments },
     FuncT{ .name = "q12", .func = q12.function, .comment = q12.comments },

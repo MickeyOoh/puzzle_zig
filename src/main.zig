@@ -24,15 +24,12 @@ pub fn main() !void {
         print("end\n", .{});
         return;
     }
-    var found: bool = false;
     for (functb.functable) |funct| {
         if (std.mem.eql(u8, funct.name, args[1])) {
-            found = true;
             print("関数実行 - {s}\n", .{funct.comment});
             funct.func();
         }
-    }
-    if (!found) {
+    } else {
         print("functable list\n", .{});
         for (functb.functable) |funct| {
             print(" {s} - {s}\n", .{ funct.name, funct.comment });
